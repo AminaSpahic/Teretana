@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Teretana</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+<ul class="topnav">
+  <li><a href="homepage.html">Početna</a></li>
+  <li><a href="grupniTrening.html">Grupni trening</a></li>
+  <li><a href="osobnitrening.html">Osobni trening</a></li>
+  <li><a class="active" href="uclaniSe.html">Učlani se</a></li>
+  <li class="right"><a href="kontakt.html">Kontakt</a></li>
+</ul>
+</header>
+
+
+<div class="red" id="uclaniSe">
+<div class="format">
+  <form action="action_page.php">
+    <label for="fname">Ime:</label>
+    <input type="text" id="fname" name="firstname" placeholder="Unesi ime">
+
+    <label for="lname">Prezime:</label>
+    <input type="text" id="lname" name="lastname" placeholder="Unesi prezime">
+    
+    <label for="lspol">Spol:</label><br><br>
+    <input type="radio" name="gender" value="male" checked> Musko
+    <input type="radio" name="gender" value="female"> Zensko <br><br>
+	
+	<label for="lemail">Kontakt e-mail:</label>
+    <input type="text"id="lemail" name="email" placeholder="Unesi email">
+	
+	<label for="ltelefon">Kontakt telefon:</label>
+    <input type="text" id="ltelefon" name="telefon" placeholder="Unesi broj telefona">
+    
+    <label for="tip">Grupni trening:</label>
+    <select id="tip" name="tip">
+      <option value="grupniY">Yoga</option>
+      <option value="grupniP">Pilates</options>
+	  <option value="grupniZ">Zumba</options>
+	  <option value="grupniTB">Total Body</options>
+    </select>
+	
+	<label for="tip">Izaberi trenera:</label>
+    <select id="tip" name="tip">
+      <option value="osobni">Katerina Srečković</option>
+      <option value="osobni">Renata Sopek</options>
+	  <option value="osobni">Filip Dropulić</options>
+	  <option value="osobni">Lejla Šebić</options>
+    </select>
+    <br>
+    <button class="button" type="submit" value="Submit">Pošalji</button>
+  </form>
+</div>
+</div>
+
+<div class="clearfix"></div>
+		
+			<div class="footer" id="footer">
+			Copyright © 2016 by AM | All rights reserved. | Preuzimanje sadržaja bez prethodne dozvole nije dopušteno.
+			Owned by AM Team | Designed by Amina Spahić
+		</div>
+</body>
