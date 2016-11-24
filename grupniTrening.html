@@ -1,22 +1,24 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Teretana/GrupniTrening</title>
 	<link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onkeydown="keyCode(event)">
 <header>
 <ul class="topnav">
   <li><a href="homepage.html">Početna</a></li>
-  <li><a class="active" href="grupniTrening.html">Grupni trening</a></li>
+  <li><a class="aktivna" href="grupniTrening.html">Grupni trening</a></li>
   <li><a href="osobnitrening.html">Osobni trening</a></li>
   <li><a href="uclaniSe.html">Učlani se</a></li>
   <li class="right"><a href="kontakt.html">Kontakt</a></li>
 </ul>
-</header>
-<!-- raspored -->
-<div class="red">
+</header> -->
+
+
+<!-- raspored  -->
+<div class="red" >
  <h2>Raspored grupnih treninga</h2>
  <div style="overflow-x:auto;">
   <table>
@@ -73,12 +75,44 @@
   </table>
  </div>
 </div>
+
+<div id="myNav1" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav1()">&times;</a>
+  <div class="overlay-content">
+   <img src="yoga.jpg" alt="yoga" id="grupneSlike"><br>
+  </div>
+</div>
+<span  onclick="openNav1()"></span>
+
+<div id="myNav2" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav2()">&times;</a>
+  <div class="overlay-content">
+   <img src="pilates.jpg" alt="pilates" id="grupneSlike"><br>
+  </div>
+</div>
+<span  onclick="openNav2()"></span>
+
+<div id="myNav3" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav3()">&times;</a>
+  <div class="overlay-content">
+   <img src="zumba2.jpg" alt="zumba" id="grupneSlike"><br>
+  </div>
+</div>
+<span  onclick="openNav3()"></span>
+
+<div id="myNav4" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav4()">&times;</a>
+  <div class="overlay-content">
+   <img src="tbody.jpg" alt="totalBody" id="grupneSlike"><br>
+  </div>
+</div>
+<span  onclick="openNav4()"></span>
 <!-- grupni trening i cjenovnik -->
 		<div class="red">
 			<div class="kolona tri">
 				<div class="red">
 					<div class="kolona dva"><strong>Yoga</strong> <br><br>
-					 <img src="yoga.jpg" alt="yoga" id="grupneSlike"><br>
+					 <img src="yoga.jpg" alt="yoga" id="grupneSlike" onclick="openNav1()"><br>
 					Joga predstavlja sistem tjelesnih vježbi (asana), tehnika<br>disanja (pranajama), meditacije, te tehnika duboke relaksacije. 
 					Ukratko, to je sveobuhvatan sistem za postizanje<br> psihofizičkog, mentalnog, društvenog i duhovnog zdravlja,<br> i ima holistički
 					pristup čovjeku.
@@ -86,7 +120,7 @@
 					</div>
 					
 					<div class="kolona dva"><strong>Pilates</strong> <br><br>
-					<img src="pilates.jpg" alt="pilates" id="grupneSlike"><br>
+					<img src="pilates.jpg" alt="pilates" id="grupneSlike" onclick="openNav2()"><br>
 	             	Pilates metoda oblikovanja tijela jedinstven je sistem vježbi<br> istezanja i vježbi snage. Taj sistem jača i oblikuje mišiće,<br>
 					ispravlja držanje tijela, daje nam gipkost i ravnotežu,<br> ujedinjuje tijelo i um te usavršava oblik tijela. 
 					<br>Trening traje sat vremena.
@@ -95,14 +129,14 @@
 				</div>
 				<div class="red">
 					<div class="kolona dva"><strong>Zumba</strong> <br><br>
-					<img src="zumba1.jpg" alt="zumba" id="grupneSlike"><br>
+					<img src="zumba2.jpg" alt="zumba" id="grupneSlike" onclick="openNav3()"><br>
 					ZUMBA – je svjetski poznat program vježbanja, koji je za<br> kratak period postao apsolutni hit u svijetu fitnesa. Ovaj<br> program 
 					vježbanja otkrio je sasvim slučajno instruktor<br> aerobika Alberto Perez prije 20 godina. Sastoji se od<br> kombinacije plesova kao što su: salsa,
 					merengue, tango,<br> reggeaton, calipso, hip-hop, lambada, twist itd.
 					<br> <br> Trener: Asja Kanlić<br><br>
 					</div>
 					<div class="kolona dva"><strong>Total body</strong> <br><br>
-					<img src="total.jpg" alt="totalBody" id="grupneSlike"><br>
+					<img src="tbody.jpg" alt="totalBody" id="grupneSlike" onclick="openNav4()"><br>
 					Total body je kondicijski trening za poboljšanje funkcionalnih <br>i motoričkih sposobnosti.Ova vrsta treninga se bazira na<br> 
 					kombinaciji ritmičkih aerobnih vježbi s istezanjem i vežbama<br> snage. Total body treninzi uključuju rad svih mišića, naročito stomaka, 
 					zadnjice i nogu i doprinose lijepom oblikovanju <br>tijela. Trening traje sat vremena.
@@ -110,7 +144,7 @@
 					</div>
 				</div>
 			</div>
-			
+	<!-- <script src="kod.js"></script>  -->
 			<div class="kolona jedan">
 			<br>
 			<strong>Cjenovnik</strong><br><br>
@@ -157,9 +191,10 @@
 <br>
 </div>
 </div>
+<!-- 
 			<div class="footer" id="footer">
 			Copyright © 2016 by AM | All rights reserved. | Preuzimanje sadržaja bez prethodne dozvole nije dopušteno.
 			Owned by AM Team | Designed by Amina Spahić
 		</div>
-
-</body>
+ 
+</body> -->

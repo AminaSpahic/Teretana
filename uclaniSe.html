@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -6,61 +6,75 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
+    
 <header>
 <ul class="topnav">
   <li><a href="homepage.html">Početna</a></li>
-  <li><a href="grupniTrening.html">Grupni trening</a></li>
+   <li><a href="grupniTrening.html">Grupni trening</a></li>
   <li><a href="osobnitrening.html">Osobni trening</a></li>
-  <li><a class="active" href="uclaniSe.html">Učlani se</a></li>
+  <li><a class="aktivna" href="uclaniSe.html">Učlani se</a></li>
   <li class="right"><a href="kontakt.html">Kontakt</a></li>
 </ul>
 </header>
-
+   -->
 
 <div class="red" id="uclaniSe">
 <div class="format">
-  <form action="action_page.php">
-    <label for="fname">Ime:</label>
-    <input type="text" id="fname" name="firstname" placeholder="Unesi ime">
-
-    <label for="lname">Prezime:</label>
-    <input type="text" id="lname" name="lastname" placeholder="Unesi prezime">
-    
+  <form class="forma-validacija" name="forma-validacija" action="#" method="post" onsubmit="return validate()">
+    <div class="validacija">
+    <label>Ime:</label>
+    <input type="text" id="fname" name="name" placeholder="Unesi ime" value="" required>
+    </div>
+    <div class="validacija">
+    <label>Prezime:</label>
+    <input type="text" id="flastname" name="lastname" placeholder="Unesi prezime" value="" required>
+    </div>
+	<div class="validacija">
     <label for="lspol">Spol:</label><br><br>
-    <input type="radio" name="gender" value="male" checked> Musko
-    <input type="radio" name="gender" value="female"> Zensko <br><br>
-	
-	<label for="lemail">Kontakt e-mail:</label>
-    <input type="text"id="lemail" name="email" placeholder="Unesi email">
-	
+    <input type="radio" name="polje" value="male" checked> Musko
+    <input type="radio" name="polje" value="female"> Zensko <br><br>
+	</div>
+	<div class="validacija">
+	<label>Kontakt e-mail:</label>
+    <input type="text" id="femail" name="email" placeholder="Unesi email" value="" required>
+   </div>
+	<div class="validacija">
 	<label for="ltelefon">Kontakt telefon:</label>
-    <input type="text" id="ltelefon" name="telefon" placeholder="Unesi broj telefona">
-    
+    <input type="text" id="ltelefon" name="telefon" placeholder="Unesi broj telefona" required>
+    </div>
+	<div class="validacija">
     <label for="tip">Grupni trening:</label>
-    <select id="tip" name="tip">
+    <select id="tip" name="polje">
       <option value="grupniY">Yoga</option>
-      <option value="grupniP">Pilates</options>
-	  <option value="grupniZ">Zumba</options>
-	  <option value="grupniTB">Total Body</options>
+      <option value="grupniP">Pilates</option>
+	  <option value="grupniZ">Zumba</option>
+	  <option value="grupniTB">Total Body</option>
     </select>
-	
+	</div>
+	<div class="validacija">
 	<label for="tip">Izaberi trenera:</label>
-    <select id="tip" name="tip">
+    <select id="tip" name="polje">
       <option value="osobni">Katerina Srečković</option>
-      <option value="osobni">Renata Sopek</options>
-	  <option value="osobni">Filip Dropulić</options>
-	  <option value="osobni">Lejla Šebić</options>
+      <option value="osobni">Renata Sopek</option>
+	  <option value="osobni">Filip Dropulić</option>
+	  <option value="osobni">Lejla Šebić</option>
     </select>
+	</div>
     <br>
-    <button class="button" type="submit" value="Submit">Pošalji</button>
+	<div class="validacija">
+    <ul class="greska"></ul>
+    </div>
+    <button class="button" id="submit" name="posalji" type="submit" value="Submit">Pošalji</button> 
   </form>
 </div>
 </div>
 
-<div class="clearfix"></div>
+<!--   <script src="kod.js"></script>
+
+
 		
 			<div class="footer" id="footer">
 			Copyright © 2016 by AM | All rights reserved. | Preuzimanje sadržaja bez prethodne dozvole nije dopušteno.
 			Owned by AM Team | Designed by Amina Spahić
 		</div>
-</body>
+</body> -->

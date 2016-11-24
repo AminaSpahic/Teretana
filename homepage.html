@@ -3,37 +3,59 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Teretana</title>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
-<header>
+
+<!-- <header>
 <ul class="topnav">
-  <li><a class="active" href="homepage.html">Početna</a></li>
+  <li><a class="aktivna" href="homepage.html">Početna</a></li>
   <li><a href="grupniTrening.html">Grupni trening</a></li>
   <li><a href="osobnitrening.html">Osobni trening</a></li>
   <li><a href="uclaniSe.html">Učlani se</a></li>
   <li class="right"><a href="kontakt.html">Kontakt</a></li>
 </ul>
+</header> -->
+
+<header>
+<ul class="topnav">
+  <li><a href="#" onclick="aj('homepage.html')">Početna</a></li>
+  <li><a href="#" onclick="aj('grupniTrening.html')">Grupni trening</a></li>
+  <li><a href="#" onclick="aj('osobniTrening.html')">Osobni trening</a></li>
+  <li><a href="#" onclick="aj('uclaniSe.html')">Učlani se</a></li>
+  <li class="right"><a href="#" onclick="aj('kontakt.html')">Kontakt</a></li>
+</ul>
 </header>
 
-<div class="slider">
-<div class="kolona4">
-  <img class="mySlides" src="running.jpg">
-  <img class="mySlides" src="Women-Fitness-Desktop-Background.jpg">
-  <img class="mySlides" src="blue-yoga-mat.jpg">
-  <img class="mySlides" src="fitness.jpg">
-  <img class="mySlides" src="background02.jpg">
-  <img class="mySlides" src="pilates.jpg">
-  <img class="mySlides" src="fitness-background-1000x650.jpg">
-	
-</div>
-</div>
-<script src="slider.js"></script> 
 
-<div class="ikone">
+<div id="polje">
+
+<div class="red">
+<div class="kolonac">
+<!-- corousel -->
+<div class="carouselbox">
+  <div class="buttons">
+    <button class="prev">
+       ◀ <span class="offscreen">Previous</span>
+    </button>
+    <button class="next">
+      <span class="offscreen">Next</span> ▶ 
+    </button>
+  </div>
+  <ol class="content">
+    <li><img src="running.jpg" alt="1"></li>
+    <li><img src="zena.png" alt="2"></li>
+    <li><img src="pozadina.jpg" alt="3"></li>
+    <li><img src="arms.jpg" alt="4"></li> 
+	<li><img src="women.jpg" alt="5"></li>
+  </ol>
+</div>
+</div>
+</div>
+	<script src="kod.js" type="text/javascript"></script> 
+<div class="red">
 <div class="kolona ikona">
-    <a href="uclaniSe.html" target="_blank">
     <img src="clanstvo-ikona.png" class="images"></a>
     <p>Alcon Sports and Health Club je<br>
     uzbudljiva, potpuno nova fitness<br>
@@ -45,7 +67,6 @@
 	iskustvo bavljenja fitnessom.</p>
 </div>
 <div class="kolona ikona">
-    <a href="grupniTrening.html" target="_blank">
     <img src="grupni-trening-ikona.png" class="images"></a>
     <p>Alcon Centar nudi razne vrste grupnih<br>
     treninga za sve nivoe učesnika. Cilj<br>
@@ -57,7 +78,6 @@
 	</p>
 </div>
 <div class="kolona ikona";>
-    <a href="osobniTrening.html" target="_blank">
     <img src="privatni-trening-ikona.png" class="images"></a>
     <p>Ostvarite svoje fitness ciljeve uz jedan<br>
     na jedan osobne treninge prilagođene<br>
@@ -69,14 +89,15 @@
 	i sretnije!</p>
 </div>
 </div>
+</div>
 <div class="clearfix"></div>
 		
 		<div class="footer" id="footer">
 			Copyright © 2016 by AM | All rights reserved. | Preuzimanje sadržaja bez prethodne dozvole nije dopušteno.
 			Owned by AM Team | Designed by Amina Spahić
 		</div>
-		
+	
 </body>
 
 
-
+</html>

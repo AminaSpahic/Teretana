@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -12,28 +12,31 @@
   <li><a href="grupniTrening.html">Grupni trening</a></li>
   <li><a href="osobnitrening.html">Osobni trening</a></li>
   <li><a href="uclaniSe.html">Učlani se</a></li>
-  <li class="right"><a class="active" href="kontakt.html">Kontakt</a></li>
+  <li class="right"><a class="aktivna" href="kontakt.html">Kontakt</a></li>
 </ul>
-</header>
+</header> -->
 
 				<div class="red" id="forma-main">
 			<div class="kolona dva" id="forma-div">
-				<form class="forma" id="forma1">
-				<h3><br>Kontaktirajte nas<br></h2>
-					<p class="ime">
-						<input name="ime" type="text" placeholder="Ime" id="ime"/>
-					</p>
+				<form class="forma" id="forma1" name="forma-validacija" action="#" method="post" onsubmit="return validirajPodatke()">
+				<h3><br>Kontaktirajte nas<br></h3>
+					<div class="validacija">
+						<input name="name" type="text" placeholder="Ime" value="" id="ime" required>
+					</div>
 					
-					<p class="email">
-						<input name="email" type="text" placeholder="E-mail" id="email"/>
-					</p>
+					<div class="validacija">
+						<input name="email" type="text" placeholder="E-mail" value="" id="email" required>
+					</div>
 					
-					<p class="phone">
-						<input name="phone" type="text" placeholder="Broj telefona" id="phone"/>
-					</p>
-					<p class="poruka">
-						<textarea name="poruka" type="text" placeholder="Upišite poruku" id="poruka">       </textarea>
-					</p>
+					<div class="validacija">
+						<input name="telefon" type="text" placeholder="Broj telefona" value="" id="phone" required>
+					</div>
+					<div class="validacija">
+						<textarea name="tekst" rows=10 maxlength="4000" type="text" placeholder="Upišite poruku" id="poruka" required>       </textarea>
+					</div>
+				    <div class="validacija">
+                    <ul class="greska"></ul>
+                    </div>
 					<div class="submit">
 						<input type="submit" value="Pošalji" id="posalji1"/>
 					</div>
@@ -59,6 +62,7 @@
 			</div>
 		</div>
 		
+<!-- 		<script src="kod.js"></script>
 		
 		<div class="clearfix"></div>
 
@@ -67,4 +71,4 @@
 			Owned by AM Team | Designed by Amina Spahić
 		</div>
 
-</body>
+</body> -->
