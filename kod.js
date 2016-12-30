@@ -1,13 +1,13 @@
 
-
+/* 
  var script = document.createElement('script');
 script.src = 'kod.js';
 script.onload = function()
 {};
 document.head.appendChild(script);
+  */
  
- 
- function aj(stranica){
+/*  function aj(stranica){
 var ajax = new XMLHttpRequest();
     ajax.onreadystatechange = function() {// Anonimna funkcija
 
@@ -25,10 +25,10 @@ var ajax = new XMLHttpRequest();
      ajax.send();
      return false;
 } 
-
+ */
 
 /*homepage-slider*/
-/* var ind = 0;
+  var ind = 0;
 slider();
 
  function slider() {
@@ -41,7 +41,7 @@ slider();
     if (ind > x.length) {ind = 1}
     x[ind-1].style.display = "block";
     setTimeout(slider, 2000); // Change image every 2 seconds
-}  */ 
+}  
 
 /*grupniTrening fullscreen*/
 function openNav1() {
@@ -149,35 +149,7 @@ if(!tacno) greska.style.display="inline-block";
 return tacno;
 }
 
-/*galerija carousel*/
-  carousel = (function(){
-  var box = document.querySelector('.carouselbox');
-  var next = box.querySelector('.next');
-  var prev = box.querySelector('.prev');
-  var counter = 0;
-  var items = box.querySelectorAll('.content li');
-  var amount = items.length;
-  var current = items[0];
-  box.classList.add('active');
-  function navigate(direction) { 
-    current.classList.remove('current');
-    
-    // racuna novu poziciju
-    counter = (counter + direction) % amount;
-    counter = counter < 0 ? amount - 1 : counter;
 
-    current = items[counter];
-    current.classList.add('current');
-  }
-  next.addEventListener('click', function(ev) {
-    navigate(1);
-  });
-  prev.addEventListener('click', function(ev) {
-    navigate(-1);
-  });
-  navigate(0);
-})(); 
- 
 
 /* kontakt validacija*/
 
@@ -242,4 +214,87 @@ if(!tacno) greska.style.display="inline-block";
 return tacno;
 }
 
+
+/*validacija login-forme*/
+function validate(){
+  var tacno=false;
+  var greska = document.getElementsByClassName('greska')[0];
+  var ime=document.getElementsByName('username')[0];
+  var lozinka=document.getElementsByName('password')[0];
+  greska.innerHTML= "";
+  var imeRegEx=/^[a-zA-Z ]{2,19}$/;
+  var passRegex=/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+  /*ime*/
+  if(ime.value.length<1 || !imeRegEx.test(ime.value))
+  {
+    ime.style.borderColor="#421C5";
+    greska.innerHTML+="<li>Ime moze sadrzavati samo slova, najmanje dva, najvise 19.Pokusajte ponovo.</li>";
+    tacno=false;
+  }
+  else{
+    ime.style.borderColor="#b793b7";
+    tacno=true;
+}
+  
+    /*password*/
+  if(lozinka.value.length<1 || !passRegex.test(lozinka.value))
+  {
+    lozinka.style.borderColor="#421C5";
+    greska.innerHTML+="<li>Netačan password. Pokušajte ponovo.</li>";
+    tacno=false;
+  }
+  else{
+    lozinka.style.borderColor="#b793b7";
+    tacno=true;
+}
+if(!tacno) greska.style.display="inline-block";
+return tacno;
+}
+
+
+/*search*/
+function prikazi(str) {
+  if (str.length==0) { 
+    document.getElementById("prikazpretrage").innerHTML="";
+    document.getElementById("prikazpretrage").style.border="0px";
+    return;
+  }
+  if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+  } else {  // code for IE6, IE5
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+      document.getElementById("prikazpretrage").innerHTML=this.responseText;
+      document.getElementById("prikazpretrage").style.border="1px solid #A5ACB2";
+      document.getElementById("prikazpretrage").style.display = "block";
+      document.getElementById("prikazRezultata").style.display = "none";
+    }
+  }
+  xmlhttp.open("GET","pretraga.php?q="+str,true);
+  xmlhttp.send();
+}
+
+function prikaziSvePretrage()
+{
+    unostrazi = document.getElementById("unostrazi").value;
+    
+    if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+  } else {  // code for IE6, IE5
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+      document.getElementById("prikazRezultata").style.display = "block";
+      document.getElementById("prikazRezultata").innerHTML=this.responseText;
+      document.getElementById("prikazpretrage").style.display = "none";
+    }
+  }
+  xmlhttp.open("GET","pretraga.php?q="+unostrazi,true);
+  xmlhttp.send();
+}
   
