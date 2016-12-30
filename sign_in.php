@@ -18,7 +18,7 @@
 <ul class="topnav">
   <li><a class="aktivna" href="homepage.php">Početna</a></li>
   <li><a href="grupniTrening.php">Grupni trening</a></li>
-  <li><a href="osobnitrening.php">Osobni trening</a></li>
+  <li><a href="osobniTrening.php">Osobni trening</a></li>
   <li><a href="uclaniSe.php">Učlani se</a></li>
   <li><a href="odjava.php">Odjava</a></li>
   <li class="right"><a href="kontakt.php">Kontakt</a></li>
@@ -30,7 +30,7 @@
   <ul class="topnav">
   <li><a href="homepage.php">Početna</a></li>
   <li><a href="grupniTrening.php">Grupni trening</a></li>
-  <li><a href="osobnitrening.php">Osobni trening</a></li>
+  <li><a href="osobniTrening.php">Osobni trening</a></li>
   <li><a href="uclaniSe.php">Učlani se</a></li>
   <li><a class="aktivna" href="sign_in.php">Prijava</a></li>
   <li class="right"><a href="kontakt.php">Kontakt</a></li>
