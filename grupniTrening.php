@@ -1,7 +1,50 @@
 <?php
-	session_start();
+	
 	$change_error = array();
 	$add_error = array();
+	session_start();
+	$server = "localhost";
+	$korisnik = "admin";
+	$pass = "admin123";
+	$baza = "teretana";
+	$veza = mysqli_connect($server, $korisnik, $pass, $baza);
+	mysqli_set_charset($veza, 'utf8');
+	if (!$veza) {
+		die("Connection failed: " . mysqli_connect_error());
+	}
+	
+	$greske_prijedlog = array();
+	$bezGreske = true;
+	
+	if(isset($_POST['prijedlog'])){
+		$program = htmlEntities($_POST['program'], ENT_QUOTES);
+		$program = preg_replace("#[^0-9a-zA-Z ščćžđŠČĆŽĐ]#i", "", $program);
+		$provjera = preg_replace("#[^0-9a-zA-ZščćžđŠČĆŽĐ]#i", "", $program);
+		if(strlen($provjera) < 2) {
+			$greske_prijedlog[] = "Naziv programa mora sadržati barem dva karaktera.";
+			$bezGreske = false;
+		}
+		$cijena = htmlEntities($_POST['cijena'], ENT_QUOTES);
+		$cijena = preg_replace("#[^0-9a-zA-Z .,ščćžđŠČĆŽĐ]#i", "", $cijena);
+		$provjera = preg_replace("#[^0-9a-zA-ZščćžđŠČĆŽĐ]#i", "", $cijena);
+		if(strlen($provjera) < 2) {
+			$greske_prijedlog[] = "Cijena mora sadržati barem dva karaktera.";
+			$bezGreske = false;
+		}
+		if($bezGreske){
+			$upit = "INSERT INTO prijedlozi (id, program, cijena)
+			VALUES (DEFAULT, '$program', '$cijena')";
+			if (mysqli_query($veza, $upit)) {
+				echo "";
+			}
+			else {
+				echo "Greška: " . $upit . "<br>" . mysqli_error($veza);
+			}
+			header('Location: grupniTrening.php');
+			die;
+		}
+		unset($_POST['prijedlog']);
+	}
 ?>
 
 <!DOCTYPE html>
@@ -215,17 +258,18 @@
 				<th>Ponuda</th>
 				<th>Cijena u KM</th>
 			</tr>
+		
 			<?php
-			$fajlovi=glob('cjenovnik/*.xml');
-			foreach($fajlovi as $fajl){
-				$xml=new SimpleXMLElement($fajl,0,true);
+			$veza = new PDO("mysql:dbname=teretana; host=localhost; charset=utf8", "admin", "admin123");
+			$upit = 'SELECT * FROM programi';
+			foreach($veza->query($upit) as $red){
 				echo '<tr>';
-				echo '<td>'. htmlspecialchars($xml->ID, ENT_QUOTES, 'UTF-8') . '</td>';
-				echo '<td>'. htmlspecialchars($xml->proizvod, ENT_QUOTES, 'UTF-8') . '</td>';
-				echo '<td>'. htmlspecialchars($xml->cijena, ENT_QUOTES, 'UTF-8') . '</td>';
+				echo '<td>'. htmlspecialchars($red['id'], ENT_QUOTES, 'UTF-8') . '</td>';
+				echo '<td>'. htmlspecialchars($red['program'], ENT_QUOTES, 'UTF-8') . '</td>';
+				echo '<td>'. htmlspecialchars($red['cijena'], ENT_QUOTES, 'UTF-8') . '</td>';
 				if (isset($_SESSION['user'])){
 				if(stristr($_SESSION['user'], "admin")){
-					echo '<td><form action="" method="POST"><input type="hidden" name="iksic" value="' . $xml->ID. '"/><input type="submit" name="izbrisi" value="X" style="width:70%; background-color:red; margin-left:15%; margin-right:15%;"/></form></td>';
+					echo '<td><form action="" method="POST"><input type="hidden" name="iksic" value="' . $red['id']. '"/><input type="submit" name="izbrisi" value="X" style="width:70%; background-color:red; margin-left:15%; margin-right:15%;"/></form></td>';
 				}
 				}
 				echo '</tr>';
@@ -234,32 +278,35 @@
 				if(stristr($_SESSION['user'], "admin")){
 					echo '<tr>';
 					echo '<td><input type="text" style="background-color: inherit; width:100%;" name="dodajBroj" class="poljeTabela" placeholder="Redni broj ponude koju dodajete"></td>';
-					echo '<td><input type="text" style="background-color: inherit; width:100%;" name="dodajProizvod" class="poljeTabela" placeholder="Naziv ponude"></td>';
+					echo '<td><input type="text" style="background-color: inherit; width:100%;" name="dodajProgram" class="poljeTabela" placeholder="Naziv ponude"></td>';
 					echo '<td><input type="text" style="background-color: inherit; width:100%;" name="dodajCijenu" class="poljeTabela" placeholder="Cijena ponude"></td>';
 					echo '<td><input type="submit" name="add_this" value = "+" style="width:70%; background-color:lightgreen; margin-left:15%; margin-right:15%;"';
 					echo '</tr>';
 								
 					echo '<tr>';
 					echo '<td><input type="text" style="background-color: inherit; width:100%;" name="change_ID" placeholder="Redni broj ponude koju mijenjate"></td>';
-					echo '<td><input type="text" style="background-color: inherit; width:100%;" name="novi_proizvod" placeholder="Novi naziv ponude"></td>';
+					echo '<td><input type="text" style="background-color: inherit; width:100%;" name="novi_program" placeholder="Novi naziv ponude"></td>';
 					echo '<td><input type="text" style="background-color: inherit; width:100%;" name="nova_cijena" placeholder="Nova cijena ponude"></td>';
 					echo '<td><input type="submit" name="change_this" value="E" style="width:70%; background-color:lightblue; margin-left:15%; margin-right:15%;"';
 					echo '</tr>';
 				}
-			}			
+			}	
+ 
+					
 			if(isset($_POST['change_this'])){
-				$fajlovi = glob('cjenovnik/*.xml');
+				$veza = new PDO("mysql:dbname=teretana; host=localhost; charset=utf8", "admin", "admin123");
+				$upit = 'SELECT * FROM programi';
+				
 				$no_error1 = true;
 				$nema = true;
-				foreach($fajlovi as $fajl) {
-				$xml = new SimpleXMLElement($fajl, 0, true);
-				if($xml->ID == $_POST['change_ID']){
+				foreach($veza->query($upit) as $red) {
+				if($red['id'] == $_POST['change_ID']){
 					$ID_d = $_POST['change_ID'];
-					$proizvod_d = htmlEntities($_POST['novi_proizvod'], ENT_QUOTES);
-					$proizvod_d = preg_replace("#[^0-9a-zA-Z ,.ščćžđŠČĆŽĐ]#i", "", $proizvod_d);
-					$provjera = preg_replace("#[^0-9a-zA-ZščćžđŠČĆŽĐ]#i", "", $proizvod_d);
+					$program_d = htmlEntities($_POST['novi_program'], ENT_QUOTES);
+					$program_d = preg_replace("#[^0-9a-zA-Z ,.ščćžđŠČĆŽĐ]#i", "", $program_d);
+					$program = preg_replace("#[^0-9a-zA-ZščćžđŠČĆŽĐ]#i", "", $program_d);
 					if(strlen($provjera)<2) {
-						$change_error[]="Naziv ponude mora sadržati bar dva karaktera.";
+						$change_error[]="Naziv programa mora sadržati bar dva karaktera.";
 						$no_error1=false;
 					}
 					$cijena_d = htmlEntities($_POST['nova_cijena'], ENT_QUOTES);
@@ -272,29 +319,30 @@
 					$cijena_d=str_replace(',', '.', $cijena_d);
 					$cijena_d = preg_replace('/\.{2,}/', '.', $cijena_d);
 					$nema = false;
+					
 					if($no_error1){
-						$fajl1 = "cjenovnik/" . $ID_d . ".xml";
-						unlink($fajl1);
-						$xml = new SimpleXMLElement('<?xml version = "1.0" encoding = "utf-8"?><stavka></stavka>');
-						$xml->addChild('ID', $ID_d);
-						$xml->addChild('proizvod', $proizvod_d);
-						$xml->addChild('cijena', $cijena_d);
-						$xml->asXML('cjenovnik/' . $ID_d . '.xml');
+						$upit1 = $veza->prepare("UPDATE programi SET program=?, cijena=? WHERE id=?");
+						$upit1->bindValue(1, $program_d, PDO::PARAM_STR);
+						$upit1->bindValue(2, $cijena_d, PDO::PARAM_STR);
+						$upit1->bindValue(3, $ID_d, PDO::PARAM_INT);
+						$upit1->execute();
 						echo "<meta http-equiv = 'refresh' content = '0'>";
 					}
 				}
 				}
 				if($nema){
-					$change_error[] = "Pod unesenim rednim brojem ne postoji ponuda.";
+					$change_error[] = "Pod unesenim rednim brojem ne postoji program.";
 				}
 			}
+			
+			
 							
 			if(isset($_POST['add_this'])){
-				$fajlovi = glob('cjenovnik/*.xml');
+			    $veza = new PDO("mysql:dbname=teretana; host=localhost; charset=utf8", "admin", "admin123");
+				$upit = 'SELECT * FROM programi';
 				$nema = true;
-				foreach($fajlovi as $fajl) {
-					$xml1 = new SimpleXMLElement($fajl, 0, true);
-					if($xml1->ID == $_POST['dodajBroj']){
+				foreach($veza->query($upit) as $red) {
+					if($red['id'] == $_POST['dodajBroj']){
 						$nema = false;
 					}
 				}
@@ -307,11 +355,11 @@
 						$add_error[] = "Redni broj ne smije sadržavati nikakve znakove osim brojeva.";
 						$no_error2 = false;
 					}
-					$proizvod_d = htmlEntities($_POST['dodajProizvod'], ENT_QUOTES);
-					$proizvod_d = preg_replace("#[^0-9a-zA-Z ,.ščćžđŠČĆŽĐ]#i", "", $proizvod_d);
-					$provjera = preg_replace("#[^0-9a-zA-ZščćžđŠČĆŽĐ]#i", "", $proizvod_d);
+					$program_d = htmlEntities($_POST['dodajProgram'], ENT_QUOTES);
+					$program_d = preg_replace("#[^0-9a-zA-Z ,.ščćžđŠČĆŽĐ]#i", "", $program_d);
+					$provjera = preg_replace("#[^0-9a-zA-ZščćžđŠČĆŽĐ]#i", "", $program_d);
 					if(strlen($provjera)<2) {
-						$add_error[] = "Naziv ponude mora sadržati bar dva karaktera.";
+						$add_error[] = "Naziv programa mora sadržati bar dva karaktera.";
 						$no_error2 = false;
 					}
 					
@@ -327,11 +375,44 @@
 					$cijena_d = preg_replace('/\.{2,}/', '.', $cijena_d);
 					
 					if($no_error2){
-						$xml = new SimpleXMLElement('<?xml version = "1.0" encoding = "utf-8"?><stavka></stavka>');
-						$xml->addChild('ID', $ID_d);
-						$xml->addChild('proizvod', $proizvod_d);
-						$xml->addChild('cijena', $cijena_d);
-						$xml->asXML('cjenovnik/' . $ID_d . '.xml');
+						$traziKorisnika = "SELECT * FROM korisnici where username = 'admin'";
+						$server = "localhost";
+						$korisnik = "admin";
+						$pass = "admin123";
+						$baza = "teretana";
+						$veza = mysqli_connect($server, $korisnik, $pass, $baza);
+						mysqli_set_charset($veza, 'utf8');
+						if (!$veza) {
+							die("Connection failed: " . mysqli_connect_error());
+						}
+						$korisnik = 'N/A';
+						$izvrsi = $veza->query($traziKorisnika);
+						if($izvrsi->num_rows > 0) {
+							$rez = mysqli_fetch_row($izvrsi);
+							$korisnik = $rez[0];
+						}
+						$programFK = -1;
+						$traziFK = "SELECT * FROM prijedlozi where program = '$program_d' and cijena = '$cijena_d'";
+						$izvrsi = $veza->query($traziFK);
+						if($izvrsi->num_rows > 0) {
+							$rez = mysqli_fetch_row($izvrsi);
+							$programFK = $rez[0];
+						}
+						
+						if($programFK != -1) {
+							$upit = "INSERT INTO programi (id, program, cijena, korisnik, programFK)
+							VALUES ('$ID_d', '$program_d', '$cijena_d', '$korisnik', '$programFK')";
+						}
+						else{
+							$upit = "INSERT INTO programi (id, program, cijena, korisnik, programFK)
+							VALUES ('$ID_d', '$program_d', '$cijena_d', '$korisnik', DEFAULT)";
+						} 
+						if (mysqli_query($veza, $upit)) {
+							echo "";
+						}
+						else {
+							echo "Greška: " . $upit . "<br>" . mysqli_error($veza);
+						}
 						echo "<meta http-equiv = 'refresh' content = '0'>";
 					}
 				}
@@ -340,10 +421,14 @@
 				}
 			}
 					
+			
 			if(isset($_POST['izbrisi'])){
 				$ID_i = $_POST['iksic'];
-				$fajl = "cjenovnik/" . $ID_i . ".xml";
-				unlink($fajl);
+				$veza = new PDO("mysql:dbname=teretana; host=localhost; charset=utf8", "admin", "admin123");
+				$upit = $veza->prepare("DELETE FROM programi WHERE id=?");
+				$upit->bindValue(1, $ID_i, PDO::PARAM_STR);
+				$upit->execute();
+				
 				echo "<meta http-equiv = 'refresh' content = '0'>";
 			}
 			?>
@@ -351,14 +436,14 @@
 		</form>
 		<?php
 			if(count($change_error)>0){
-				echo '<p>Došlo je do greške pri izmjeni ponude:';
+				echo '<p>Došlo je do greške pri izmjeni programa:';
 				foreach($change_error as $g){
 					echo '<p style = "color:red;">' . $g . '</p>';
 				}
 				echo '</p>';
 			}
 			if(count($add_error) > 0){
-				echo '<p>Došlo je do greške pri dodavanju ponude:';
+				echo '<p>Došlo je do greške pri dodavanju programa:';
 				foreach($add_error as $g){
 					echo '<p style = "color:red;">' . $g . '</p>';
 				}
@@ -368,6 +453,39 @@
 		</div>
 		</div>
 		<br>
+				<div class = "red">
+				<div class="kolona tri">
+				<form method = "post" id="kolonalogin" class = "forma-validacija" name = "forma-validacija" action = "" >
+					<table>
+						<caption>Predložite novi program</caption>
+						<tr>
+							<td>Ponuda: </td>
+							<td><input type = "text" name = "program" class = "unos"></td>
+						</tr>
+						<tr>
+							<td>Cijena: </td>
+							<td><input type = "text" name = "cijena" class = "unos"></td>
+						</tr>
+						
+						<tr>
+							<td></td>
+							<td class = "desno"><input name = "prijedlog" type = "submit" value = "Pošalji"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<?php
+									if(count($greske_prijedlog) > 0){
+			                    	foreach($greske_prijedlog as $g){
+					               echo '<li style = "color:red; list-style: none;">- ' . $g . '</li>';
+				                         }
+		                            	}
+								?>
+							</td>
+						</tr>
+					</table>	
+			</div>
+			</div>
 
 
 			<div class="footer" id="footer">

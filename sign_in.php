@@ -116,7 +116,11 @@ if(isset($_REQUEST['posalji'])){
                       <div class="validacija">
 						<ul class="greska"></ul>
 						</div> 	
+						
 					    <button id="logbutton" name="posalji" type="submit" value="Submit">Prijava</button> 
+						<div class="kolona tri">
+						<p class = "greska">Niste registrovani? <a href = "sign_up.php">Kreirajte novi račun</a></p>
+						</div>
 				  </form>	
 				</div>
 				</div>
