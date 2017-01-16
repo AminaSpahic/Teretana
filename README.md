@@ -86,22 +86,44 @@ Folder Skice- sadrzi skice za desktop i za mobilnu verziju stranica.
 style.css - sadrzi sav css kod za stranicu
 kod.js - javascript document, kod za ajax, carousel, fullscreen, validaciju ..
 
-SPIRALA 3
+##SPIRALA 3
 I - Šta je urađeno? 1) Napravljena je serijalizacija svih podataka u XML fajlove, nalazi u i folderu "xmlovi". Omogućen je unos, izmjenu, prikazivanje i brisanje podataka od strane admina, na podstranici "grupniTrening.php", gdje moze raditi manipulaciju nad stavkama u cjenovniku. Svi podaci koji se unose u XML du validirani (validacija i u js i PHP-u). Adminovi podaci (username - admin i password - admin123) . 2) i 3) Omogućen adminu download podataka u obliku csv i pdf fajla. Podaci su iz XML-a(clanovi.xml), nisu hardkodirani. Kad je admin logovan, na podstranici "uclaniSe.php", moze downloadovati spomente fajlove. 4) Napravljen opcija pretrage podataka sa prijedlozima.
 Kada korisnik pritisne na dugme Traži prikazuju se svi rezultati koji zadovoljavaju uslov. 5) Urađen je i deployment, http://teretana-teretana.44fs.preview.openshiftapps.com/homepage.php
 II - Šta nije urađeno? Sve je urađeno.
 III - Bug-ovi koje ste primijetili ali niste stigli ispraviti, a znate rješenje (opis rješenja) /
 IV - Bug-ovi koje ste primijetili ali ne znate rješenje /
 V - Lista fajlova u formatu NAZIVFAJLA - Opis u vidu jedne rečenice šta se u fajlu nalazi
-homepage.php - Pocetna stranica, sadrži slider sa slikama, ukratko o programima i pretrazivac.
+homepage.php - Pocetna stranica, sadrži slider sa slikama, ukratko o programima i pretrazivac
+.
 grupniTrening.php - Podstranica koja sadrzi raspored treninga, ukratko o programima i cjenovnik.Klikom na slike, rašire se preko cijelog ekrana. na samom kraju podstranice nalazi se tabele sa cijenama i ponudama teretane, na kojoj admin vrsi manipulaciju nad podacima.
-osobniTrening.php - Podstranica koja sadrzi informacije o programu, ličnim trenerima i anketu.
-uclaniSe.php - Podstranica koja sadrzi formu za članstvo u teretana. Kad je admin logovan, sadrzi i buttone za download u pdf i csv format.Forma validirana.
-kontakt.php - Podstranica koja sadrzi formu za slanje poruka, kontakt informacije, te mapu sa lokacijom. Forma validirana.
-sign_in.php - Podstranica koja omogućava prijavu odjava.php -odjava sa sesije
-Folder Skice- sadrzi skice za desktop i za mobilnu verziju stranica. style.css - sadrzi sav css kod za stranicu kod.js - javascript document pretraga.php - php fajl koji vrši pretraživanje XML fajlova unutar foldera cjenovnik i šalje kao odgovor rezultat pretrage fpdf bibiloteka pdf.php - za downloadovanje u pdp pdf.csv - za downloadovanje u php folder cjenovnik - folder u kome su smješteni XML fajlovi, koji sadrže id, cijenu i naziv ponude koji se nalaze u ponudi xmlovi- folder u kojem su smjesten XML fajlovi(admin.xml, anketa.xml, clanovi.xml, kontakti.xml, login.xml)
 
-SPIRALA 4
+osobniTrening.php - Podstranica koja sadrzi informacije o programu, ličnim trenerima i anketu.
+
+uclaniSe.php - Podstranica koja sadrzi formu za članstvo u teretana. Kad je admin logovan, sadrzi i buttone za download u pdf i csv format.Forma validirana.
+
+kontakt.php - Podstranica koja sadrzi formu za slanje poruka, kontakt informacije, te mapu sa lokacijom. Forma validirana.
+
+sign_in.php - Podstranica koja omogućava prijavu odjava.php -odjava sa sesije
+
+Folder Skice- sadrzi skice za desktop i za mobilnu verziju stranica.
+
+style.css - sadrzi sav css kod za stranicu 
+
+kod.js - javascript document
+
+pretraga.php - php fajl koji vrši pretraživanje XML fajlova unutar foldera cjenovnik i šalje kao odgovor rezultat pretrage
+
+fpdf bibiloteka
+
+pdf.php - za downloadovanje u pdf
+
+csv.pdf - za downloadovanje u php folder
+
+cjenovnik - folder u kome su smješteni XML fajlovi, koji sadrže id, cijenu i naziv ponude koji se nalaze u ponudi
+
+xmlovi- folder u kojem su smjesten XML fajlovi(admin.xml, anketa.xml, clanovi.xml, kontakti.xml, login.xml)
+
+##SPIRALA 4
 **I  - Šta je urađeno?** 
 Napravljena ne MYSQL baza sa tri povezane tabele korisnici(registrovani korisniici, primarni kljuc username), prijedlozi(primarni kljuc id, programi(primarni kljuc id, a foreign key ima na tabelu korisnici(korisnik) in a tableu prijedlozi(programFK)). 
 Dodana je forma za registraciju (sign_up.php), na koju se dolazi klikom na link, na podstranici sign_in.php.
@@ -122,25 +144,46 @@ Nije ni omoguceno da na klikom na dugme svi podaci iz xml-a prebace u bazu podat
 /
 **V  - Lista fajlova u formatu NAZIVFAJLA - Opis u vidu jedne rečenice šta se u fajlu nalazi**
 homepage.php - Pocetna stranica, sadrži slider sa slikama, ukratko o programima i pretrazivac.
+
 grupniTrening.php - Podstranica koja sadrzi raspored treninga, ukratko o programima i cjenovnik.Klikom na slike, rašire se 
                   preko cijelog ekrana. na samom kraju podstranice nalazi se tabele sa cijenama i ponudama teretane, 
                   na kojoj admin vrsi manipulaciju nad podacima.Dodana forma za prijedloge.
+                  
+                  
 osobniTrening.php - Podstranica koja sadrzi informacije o programu, ličnim trenerima i anketu.
+
+
 uclaniSe.php - Podstranica koja sadrzi formu za članstvo u teretana. Kad je admin logovan, sadrzi i buttone za download u
                pdf i csv format.Forma validirana.
+               
+               
 kontakt.php - Podstranica koja sadrzi formu za slanje poruka, kontakt informacije, te mapu sa lokacijom. Forma validirana.
+
 sign_in.php - Podstranica koja omogućava prijavu registorvsanih korisnika.
+
 sign_up.php - Podstranica koja omogucava registraciju korisnika.
+
 odjava.php -odjava sa sesije
+
 Folder Skice- sadrzi skice za desktop i za mobilnu verziju stranica. 
+
 style.css - sadrzi sav css kod za stranicu
+
 kod.js - javascript document 
+
 pretraga.php - php fajl koji vrši pretraživanje XML fajlova unutar foldera cjenovnik i šalje kao odgovor rezultat pretrage
+
 fpdf bibiloteka
 pdf.php - za downloadovanje u pdf
+
 csv.php - za downloadovanje u csv
+
 folder cjenovnik - folder u kome su smješteni XML fajlovi, koji sadrže id, cijenu i naziv ponude koji se nalaze u ponudi 
-xmlovi- folder u kojem su smjesten XML fajlovi(admin.xml, anketa.xml, clanovi.xml, kontakti.xml, login.xml)
+
+xmlovi- folder u kojem su smjesten XML fajlovi(admin.xml, anketa.xml, clanovi.xml, kontakti.xml, login.xml
+
 teretana.sql -  export baze sa phpMyAdmin
+
 folder POSTMAN - folder u kojem se nalaze screenshotovi na kojima je prikazano testiranje web servisa
+
 webservis.php - php fajl u kojem se nalazi GET metoda REST web servisa koja vraća podatke u obliku JSON-a
