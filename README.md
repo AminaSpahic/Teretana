@@ -86,7 +86,7 @@ Folder Skice- sadrzi skice za desktop i za mobilnu verziju stranica.
 style.css - sadrzi sav css kod za stranicu
 kod.js - javascript document, kod za ajax, carousel, fullscreen, validaciju ..
 
-##SPIRALA 3
+## SPIRALA 3
 I - Šta je urađeno? 1) Napravljena je serijalizacija svih podataka u XML fajlove, nalazi u i folderu "xmlovi". Omogućen je unos, izmjenu, prikazivanje i brisanje podataka od strane admina, na podstranici "grupniTrening.php", gdje moze raditi manipulaciju nad stavkama u cjenovniku. Svi podaci koji se unose u XML du validirani (validacija i u js i PHP-u). Adminovi podaci (username - admin i password - admin123) . 2) i 3) Omogućen adminu download podataka u obliku csv i pdf fajla. Podaci su iz XML-a(clanovi.xml), nisu hardkodirani. Kad je admin logovan, na podstranici "uclaniSe.php", moze downloadovati spomente fajlove. 4) Napravljen opcija pretrage podataka sa prijedlozima.
 Kada korisnik pritisne na dugme Traži prikazuju se svi rezultati koji zadovoljavaju uslov. 5) Urađen je i deployment, http://teretana-teretana.44fs.preview.openshiftapps.com/homepage.php
 II - Šta nije urađeno? Sve je urađeno.
@@ -123,7 +123,7 @@ cjenovnik - folder u kome su smješteni XML fajlovi, koji sadrže id, cijenu i n
 
 xmlovi- folder u kojem su smjesten XML fajlovi(admin.xml, anketa.xml, clanovi.xml, kontakti.xml, login.xml)
 
-##SPIRALA 4
+## SPIRALA 4
 **I  - Šta je urađeno?** 
 Napravljena ne MYSQL baza sa tri povezane tabele korisnici(registrovani korisniici, primarni kljuc username), prijedlozi(primarni kljuc id, programi(primarni kljuc id, a foreign key ima na tabelu korisnici(korisnik) in a tableu prijedlozi(programFK)). 
 Dodana je forma za registraciju (sign_up.php), na koju se dolazi klikom na link, na podstranici sign_in.php.
